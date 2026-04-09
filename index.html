@@ -404,6 +404,62 @@ h1.hero-h1 em{font-style:italic;color:var(--blue)}
 .case-metrics{display:flex;gap:20px;border-top:1px solid var(--rule);padding-top:16px;flex-wrap:wrap}
 .case-metric-val{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--heading)}
 .case-metric-lbl{font-size:.7rem;color:var(--muted);margin-top:1px}
+.case-card-cta{
+  margin-top:16px;width:100%;justify-content:center;font-size:.8125rem;padding:10px 16px;
+  border:1.5px solid rgba(13,148,136,.35);color:var(--blue2);background:rgba(240,253,250,.6);
+  border-radius:8px;cursor:pointer;font-family:inherit;font-weight:600;
+  transition:background .2s,border-color .2s,transform .15s;
+}
+.case-card-cta:hover{background:var(--bluefade);border-color:var(--blue);color:var(--heading)}
+.case-card-cta:focus{outline:2px solid var(--blue);outline-offset:2px}
+
+/* Case study detail dialogs */
+.case-dialog{
+  z-index:400;
+  max-width:min(720px,calc(100vw - 32px));width:100%;
+  max-height:min(92vh,900px);padding:0;border:none;border-radius:16px;
+  box-shadow:0 24px 64px rgba(7,18,16,.2),0 0 0 1px rgba(209,250,229,.8);
+  background:#fff;
+}
+.case-dialog::backdrop{background:rgba(7,18,16,.55);backdrop-filter:blur(4px)}
+.case-dialog-header{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  padding:22px 24px 16px;border-bottom:1px solid var(--rule);
+  position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);z-index:1;
+}
+.case-dialog-title{font-family:'DM Serif Display',serif;font-size:clamp(1.35rem,3vw,1.75rem);font-weight:400;color:var(--heading);line-height:1.25;margin:0;max-width:85%}
+.case-dialog-x{
+  flex-shrink:0;width:40px;height:40px;border:none;border-radius:10px;background:var(--surface);
+  color:var(--heading);font-size:1.35rem;line-height:1;cursor:pointer;transition:background .2s;
+}
+.case-dialog-x:hover{background:var(--bluefade)}
+.case-dialog-body{
+  padding:20px 24px 28px;overflow-y:auto;max-height:calc(92vh - 100px);
+  -webkit-overflow-scrolling:touch;
+}
+.case-dialog-kicker{
+  font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue2);margin-bottom:14px;
+}
+.case-dialog-section{margin-bottom:22px}
+.case-dialog-section:last-child{margin-bottom:0}
+.case-dialog-section h3{
+  font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--heading);margin-bottom:10px;
+}
+.case-dialog-section p,.case-dialog-section li{font-size:.9rem;color:rgba(75,122,117,.95);line-height:1.68}
+.case-dialog-section ul{margin:0;padding-left:1.15rem}
+.case-dialog-section li{margin-bottom:6px}
+.case-dialog-section strong{color:var(--heading);font-weight:600}
+.case-dialog-meta{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;
+}
+.case-dialog-pill{
+  font-size:.68rem;font-weight:600;padding:4px 10px;border-radius:100px;background:var(--bluefade2);color:var(--blue2);border:1px solid rgba(13,148,136,.2);
+}
+@media(max-width:640px){
+  .case-dialog{border-radius:14px 14px 0 0;max-height:95vh;align-self:flex-end;margin-top:auto}
+  .case-dialog-body{max-height:calc(95vh - 88px);padding:18px 18px 24px}
+  .case-dialog-header{padding:18px 18px 14px}
+}
 
 /* ─── EXPERIENCE / LEAD ─── */
 #experience{background:#fff;border-top:1px solid rgba(209,250,229,.4)}
@@ -968,7 +1024,7 @@ body.nav-open{overflow:hidden;touch-action:none}
     <div class="reveal">
       <div class="section-label">Selected work</div>
       <h2 class="section-heading">Production systems, <em>real clients</em></h2>
-      <p class="section-sub">Laravel + MySQL, with <strong>React</strong> / <strong>JS</strong> where the UI needs it. Most cards use <strong>illustrative mockups</strong> with dummy data; <strong>AAG Maritime</strong> shows the actual marketing site screenshot.</p>
+      <p class="section-sub">Laravel + MySQL, with <strong>React</strong> / <strong>JS</strong> where the UI needs it. Most cards use <strong>illustrative mockups</strong> with dummy data; <strong>AAG Maritime</strong> shows the actual marketing site screenshot. <strong>Read full case study</strong> on each card for problem, business model, and solution in depth.</p>
     </div>
     <div class="cases-grid">
 
@@ -987,6 +1043,7 @@ body.nav-open{overflow:hidden;touch-action:none}
             <div><div class="case-metric-val">3</div><div class="case-metric-lbl">Core modules</div></div>
             <div><div class="case-metric-val">Live</div><div class="case-metric-lbl">Operations</div></div>
           </div>
+          <button type="button" class="case-card-cta" data-case-dialog="case-modal-jm-rosel">Read full case study</button>
         </div>
       </div>
 
@@ -1005,6 +1062,7 @@ body.nav-open{overflow:hidden;touch-action:none}
             <div><div class="case-metric-val">BOM</div><div class="case-metric-lbl">Production</div></div>
             <div><div class="case-metric-val">Full</div><div class="case-metric-lbl">Finance &amp; ledger</div></div>
           </div>
+          <button type="button" class="case-card-cta" data-case-dialog="case-modal-divinejm">Read full case study</button>
         </div>
       </div>
 
@@ -1023,6 +1081,7 @@ body.nav-open{overflow:hidden;touch-action:none}
             <div><div class="case-metric-val">Daily</div><div class="case-metric-lbl">Cashflow</div></div>
             <div><div class="case-metric-val">Ledger</div><div class="case-metric-lbl">Sales &amp; consignment</div></div>
           </div>
+          <button type="button" class="case-card-cta" data-case-dialog="case-modal-angie">Read full case study</button>
         </div>
       </div>
 
@@ -1041,6 +1100,7 @@ body.nav-open{overflow:hidden;touch-action:none}
             <div><div class="case-metric-val">1→3</div><div class="case-metric-lbl">Branches (roadmap)</div></div>
             <div><div class="case-metric-val">Rules</div><div class="case-metric-lbl">Per transaction</div></div>
           </div>
+          <button type="button" class="case-card-cta" data-case-dialog="case-modal-citipower">Read full case study</button>
         </div>
       </div>
 
@@ -1059,6 +1119,7 @@ body.nav-open{overflow:hidden;touch-action:none}
             <div><div class="case-metric-val">3</div><div class="case-metric-lbl">Service types</div></div>
             <div><div class="case-metric-val">Plan</div><div class="case-metric-lbl">Installments</div></div>
           </div>
+          <button type="button" class="case-card-cta" data-case-dialog="case-modal-ronnie">Read full case study</button>
         </div>
       </div>
 
@@ -1077,6 +1138,7 @@ body.nav-open{overflow:hidden;touch-action:none}
             <div><div class="case-metric-val">SEO</div><div class="case-metric-lbl">Friendly structure</div></div>
             <div><div class="case-metric-val">Brand</div><div class="case-metric-lbl">Maritime</div></div>
           </div>
+          <button type="button" class="case-card-cta" data-case-dialog="case-modal-aag">Read full case study</button>
         </div>
       </div>
 
@@ -1084,7 +1146,194 @@ body.nav-open{overflow:hidden;touch-action:none}
   </div>
 </section>
 
-<!-- EXPERIENCE / LEADERSHIP -->
+<!-- CASE STUDY DETAIL MODALS -->
+<dialog class="case-dialog" id="case-modal-jm-rosel" aria-labelledby="case-dlg-title-jm">
+  <div class="case-dialog-header">
+    <h2 class="case-dialog-title" id="case-dlg-title-jm">JMRosel Trucking Services</h2>
+    <button type="button" class="case-dialog-x" aria-label="Close dialog">&times;</button>
+  </div>
+  <div class="case-dialog-body">
+    <p class="case-dialog-kicker">Fleet operations · Dispatch · Expenses · Payroll</p>
+    <div class="case-dialog-meta">
+      <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">MySQL</span><span class="case-dialog-pill">Live system</span>
+    </div>
+    <div class="case-dialog-section">
+      <h3>Context</h3>
+      <p>A trucking operator running regional trips needed one place to see <strong>what moved</strong>, <strong>what it cost</strong>, and <strong>what drivers should be paid</strong> — without reconciling spreadsheets every week.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>The problem</h3>
+      <p>Dispatch lived in one workflow, <strong>fuel and expenses</strong> in another, and <strong>payroll</strong> in a third. Trip-level detail did not tie cleanly to pay rules, so closing a pay period meant manual matching and constant back-and-forth. That slowed operations and increased error risk.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>Business model</h3>
+      <p>Revenue is <strong>trip- and route-driven</strong>: each run has revenue potential, variable cost (fuel, tolls, maintenance), and driver compensation rules. The business only stays profitable when <strong>every trip’s cost and pay</strong> can be explained from the same operational truth — not from reconciled estimates.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>How we fixed it</h3>
+      <p>We delivered a single <strong>Laravel</strong> application with three tightly linked modules:</p>
+      <ul>
+        <li><strong>Dispatch</strong> — trips, vehicles, and status in one board so operations sees live movement.</li>
+        <li><strong>Expenses</strong> — costs captured against trips and cost centers so margin is visible per run.</li>
+        <li><strong>Payroll</strong> — pay rules and outputs grounded in the same trip and expense data, reducing reconciliation to exception handling instead of default work.</li>
+      </ul>
+      <p>One database, one audit trail, role-based access — so leadership can trust the numbers and the team spends less time fixing them.</p>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="case-dialog" id="case-modal-divinejm" aria-labelledby="case-dlg-title-dj">
+  <div class="case-dialog-header">
+    <h2 class="case-dialog-title" id="case-dlg-title-dj">DivineJM Foods</h2>
+    <button type="button" class="case-dialog-x" aria-label="Close dialog">&times;</button>
+  </div>
+  <div class="case-dialog-body">
+    <p class="case-dialog-kicker">National food distribution · 30+ branches · Production &amp; finance</p>
+    <div class="case-dialog-meta">
+      <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">Multi-branch</span><span class="case-dialog-pill">BOM / ERP</span>
+    </div>
+    <div class="case-dialog-section">
+      <h3>Context</h3>
+      <p>A food business distributing nationwide with <strong>many branches</strong> must know, at any moment: what raw stock exists, what is being produced, what finished goods sit where, what is on consignment, and whether the books reflect reality.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>The problem</h3>
+      <p>Branch inventory, production, consignment, and finance were at risk of <strong>drifting apart</strong>: production might consume materials that weren’t decremented correctly; branch stock might not match what sales could promise; consignment and ledger entries could lag behind operations. That breaks trust in margin and availability.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>Business model</h3>
+      <p>The model combines <strong>manufacturing</strong> (raw → finished via recipes / BOM), <strong>multi-location inventory</strong> (what each branch can sell or transfer), and <strong>consignment &amp; sales</strong> with a full financial trail. Profitability depends on accurate <strong>COGS</strong>, waste visibility, and branch-level performance — all of which require one operational source of truth.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>How we fixed it</h3>
+      <p>We built a <strong>Laravel + MySQL</strong> platform that connects the full chain:</p>
+      <ul>
+        <li><strong>Master data</strong> — raw materials, finished products, areas, and customers structured for scale.</li>
+        <li><strong>Production</strong> — production mixes and <strong>BOM-style logic</strong> with <strong>automatic raw-material deductions</strong> when product is produced.</li>
+        <li><strong>Branch inventory</strong> — visibility per branch for what can ship or transfer.</li>
+        <li><strong>Consignment &amp; sales</strong> with <strong>ledger-grade</strong> treatment so finance and operations read the same story.</li>
+        <li><strong>Reporting</strong> for operational and financial leadership without exporting to fragile spreadsheets.</li>
+      </ul>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="case-dialog" id="case-modal-angie" aria-labelledby="case-dlg-title-angie">
+  <div class="case-dialog-header">
+    <h2 class="case-dialog-title" id="case-dlg-title-angie">Angie — Inventory &amp; Finance</h2>
+    <button type="button" class="case-dialog-x" aria-label="Close dialog">&times;</button>
+  </div>
+  <div class="case-dialog-body">
+    <p class="case-dialog-kicker">Two branches · Inventory · Sales · Daily cashflow</p>
+    <div class="case-dialog-meta">
+      <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">Cashflow</span><span class="case-dialog-pill">Ledger</span>
+    </div>
+    <div class="case-dialog-section">
+      <h3>Context</h3>
+      <p>A multi-branch food-style operation needed <strong>enterprise-grade discipline</strong> with a smaller footprint: two locations, but the same need for tight inventory, production alignment, and <strong>daily visibility into cash</strong>.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>The problem</h3>
+      <p>Owners could not afford to wait for month-end to know if the business was <strong>liquid and healthy</strong>. Inventory and sales data had to connect to <strong>cash in and out</strong> every day; otherwise corrective action came too late.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>Business model</h3>
+      <p>The business earns through <strong>product movement</strong> (sales, consignment) and manages <strong>tight working capital</strong>: money tied in stock, receivables, and payables must be visible alongside <strong>daily operating cash</strong>. The “model” is sustainable only when cashflow, inventory, and books stay aligned.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>How we fixed it</h3>
+      <p>We implemented the same structural strengths as a larger distribution build — <strong>inventory sync</strong>, production and material logic, consignment and <strong>sales ledger</strong> — and added <strong>daily cashflow</strong> dashboards so leadership sees <strong>cost, profit, and liquidity</strong> as the day unfolds, not only after books close.</p>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="case-dialog" id="case-modal-citipower" aria-labelledby="case-dlg-title-citipower">
+  <div class="case-dialog-header">
+    <h2 class="case-dialog-title" id="case-dlg-title-citipower">Citipower Electronic Supply</h2>
+    <button type="button" class="case-dialog-x" aria-label="Close dialog">&times;</button>
+  </div>
+  <div class="case-dialog-body">
+    <p class="case-dialog-kicker">Purchase orders · Inventory · Sales · Branch-ready</p>
+    <div class="case-dialog-meta">
+      <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">PO sync</span><span class="case-dialog-pill">Rules engine</span>
+    </div>
+    <div class="case-dialog-section">
+      <h3>Context</h3>
+      <p>An electronics supply business lives or dies on <strong>accurate stock</strong> and <strong>fast order-to-cash</strong>. Purchase orders, receiving, and sales must update the same inventory truth.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>The problem</h3>
+      <p>When <strong>POs, receiving, and sales</strong> were updated manually or in separate silos, counts and commitments <strong>drifted</strong>: sales could promise stock that receiving hadn’t reflected, or purchasing could reorder off stale numbers.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>Business model</h3>
+      <p>Margin comes from <strong>turning inventory</strong> and serving trade customers reliably. The model depends on <strong>transaction-driven stock</strong>: every PO receipt, adjustment, and sale updates the same ledger of quantity and value so pricing and fulfillment stay honest.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>How we fixed it</h3>
+      <p>We wired <strong>inventory, sales, and purchase orders</strong> in one Laravel system so a <strong>PO receipt updates stock</strong> and downstream behavior can follow <strong>rules by transaction type</strong>. The deployment runs <strong>one branch</strong> today; the <strong>data model and roles</strong> are structured to scale to additional branches without rebuilding core flows.</p>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="case-dialog" id="case-modal-ronnie" aria-labelledby="case-dlg-title-ra">
+  <div class="case-dialog-header">
+    <h2 class="case-dialog-title" id="case-dlg-title-ra">Ronnie Budiongan Aircon Services</h2>
+    <button type="button" class="case-dialog-x" aria-label="Close dialog">&times;</button>
+  </div>
+  <div class="case-dialog-body">
+    <p class="case-dialog-kicker">Serialised equipment · Field service · Installments</p>
+    <div class="case-dialog-meta">
+      <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">Service jobs</span><span class="case-dialog-pill">Collections</span>
+    </div>
+    <div class="case-dialog-section">
+      <h3>Context</h3>
+      <p>HVAC businesses sell <strong>units and parts</strong> that must be tracked individually, and they earn repeatedly through <strong>install, repair, and maintenance</strong>. Many customers pay on <strong>installment plans</strong>, so collections must be as visible as inventory.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>The problem</h3>
+      <p>Generic retail inventory is not enough: the business needs <strong>serial-level traceability</strong> for equipment and parts, <strong>job-based service</strong> revenue, and <strong>installment schedules</strong> that don’t get lost in a generic “accounts” column.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>Business model</h3>
+      <p>Revenue mixes <strong>product margin</strong> and <strong>recurring service</strong>, with cash flow supported (or stressed) by <strong>planned customer payments</strong>. The model requires tying every unit to a serial, every job to a customer, and every installment to a clear schedule.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>How we fixed it</h3>
+      <p>We implemented <strong>serial-level inventory</strong>, <strong>service job</strong> modules for core revenue activities, and an <strong>installment plan</strong> view so monthly collections are visible and missed payments surface early — reducing revenue leakage and disputes.</p>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="case-dialog" id="case-modal-aag" aria-labelledby="case-dlg-title-aag">
+  <div class="case-dialog-header">
+    <h2 class="case-dialog-title" id="case-dlg-title-aag">AAG Maritime Management Services</h2>
+    <button type="button" class="case-dialog-x" aria-label="Close dialog">&times;</button>
+  </div>
+  <div class="case-dialog-body">
+    <p class="case-dialog-kicker">Marketing site · Maritime · Lead generation</p>
+    <div class="case-dialog-meta">
+      <span class="case-dialog-pill">Web</span><span class="case-dialog-pill">SEO-ready</span><span class="case-dialog-pill">Lead forms</span>
+    </div>
+    <div class="case-dialog-section">
+      <h3>Context</h3>
+      <p>AAG provides <strong>shipping, seaport, and maritime</strong> services to corporate and institutional clients. The website’s job is to <strong>establish credibility</strong> quickly and convert interest into <strong>qualified inquiries</strong> — not just look good.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>The problem</h3>
+      <p>Maritime buyers compare vendors on <strong>trust, clarity, and responsiveness</strong>. A weak or confusing site loses deals before a conversation starts: services must be scannable, differentiation clear, and contact friction low.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>Business model</h3>
+      <p>The commercial model is <strong>B2B project and retainer-style work</strong>: win trust online, route leads to sales, then deliver complex logistics services offline. The site is a <strong>top-of-funnel asset</strong> — it must support brand positioning, service packaging, and measurable lead capture.</p>
+    </div>
+    <div class="case-dialog-section">
+      <h3>How we fixed it</h3>
+      <p>We built a focused <strong>marketing presence</strong> with clear service narratives, structured sections for maritime offerings, and <strong>inquiry paths</strong> that match how prospects evaluate vendors. The implementation leaves room to grow (case studies, partner logos, richer content) without restructuring the core site — so marketing can evolve without a rebuild.</p>
+    </div>
+  </div>
+</dialog>
+
 <section id="experience" class="section">
   <div class="section-inner">
     <div class="reveal">
@@ -1335,6 +1584,22 @@ body.nav-open{overflow:hidden;touch-action:none}
   });
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&body.classList.contains('nav-open'))close()});
   window.addEventListener('resize',function(){if(!mq.matches)close()});
+})();
+(function(){
+  document.querySelectorAll('.case-card-cta').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var id=btn.getAttribute('data-case-dialog');
+      var d=id&&document.getElementById(id);
+      if(d&&typeof d.showModal==='function'){d.showModal();}
+    });
+  });
+  document.querySelectorAll('.case-dialog').forEach(function(d){
+    d.addEventListener('click',function(e){if(e.target===d)d.close();});
+    var x=d.querySelector('.case-dialog-x');
+    if(x)x.addEventListener('click',function(){d.close();});
+  });
 })();
 </script>
 </body>
