@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Generate anonymized case-study PNGs with dummy data only (no real client figures or names)."""
+"""Generate anonymized case-study PNGs with dummy data only (no real client figures or names).
+
+Does not overwrite aag-maritime.png — that asset stays as the real marketing site screenshot.
+"""
 
 from __future__ import annotations
 
@@ -240,30 +243,6 @@ def ronnie_aircon(w: int, h: int) -> Image.Image:
     return img
 
 
-def aag_maritime(w: int, h: int) -> Image.Image:
-    img = Image.new("RGB", (w, h), (14, 36, 56))
-    draw = ImageDraw.Draw(img)
-    for y in range(h):
-        t = y / h
-        r = int(14 + t * 30)
-        g = int(36 + t * 40)
-        b = int(56 + t * 50)
-        draw.line([(0, y), (w, y)], fill=(r, g, b))
-    f_lg, f_md, f_sm = load_font(36), load_font(15), load_font(12)
-    draw.text((60, h // 2 - 80), "Maritime services (demo page)", fill=(240, 250, 255), font=f_lg)
-    draw.text(
-        (60, h // 2 - 10),
-        "Placeholder hero for portfolio — not a live marketing site.",
-        fill=(186, 230, 253),
-        font=f_md,
-    )
-    draw.text((60, h // 2 + 28), "Contact: demo@example.com · +63 000 000 0000", fill=(125, 211, 252), font=f_sm)
-    rounded_rect(draw, (60, h // 2 + 70, 240, h // 2 + 110), fill=(14, 165, 233))
-    draw.text((88, h // 2 + 84), "Request sample quote", fill=(255, 255, 255), font=f_md)
-    draw_demo_badge(img, draw, w)
-    return img
-
-
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     gens = [
@@ -272,13 +251,13 @@ def main() -> None:
         ("angie.png", angie, 1024, 536),
         ("citipower.png", citipower, 1400, 729),
         ("ronnie-aircon.png", ronnie_aircon, 1400, 731),
-        ("aag-maritime.png", aag_maritime, 1400, 729),
     ]
     for name, fn, width, height in gens:
         im = fn(width, height)
         path = OUT / name
         im.save(path, "PNG", optimize=True)
         print(f"Wrote {path} ({width}x{height})")
+    print("Skipped aag-maritime.png (use real marketing screenshot).")
 
 
 if __name__ == "__main__":
