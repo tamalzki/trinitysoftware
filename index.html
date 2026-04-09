@@ -413,16 +413,28 @@ h1.hero-h1 em{font-style:italic;color:var(--blue)}
 .case-card-cta:hover{background:var(--bluefade);border-color:var(--blue);color:var(--heading)}
 .case-card-cta:focus{outline:2px solid var(--blue);outline-offset:2px}
 
-/* Case study detail dialogs */
+/* Case study detail dialogs — centered in viewport */
 .case-dialog{
   z-index:400;
+  position:fixed;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  margin:0;
   max-width:min(720px,calc(100vw - 32px));width:100%;
   max-height:min(92vh,900px);padding:0;border:none;border-radius:16px;
   box-shadow:0 24px 64px rgba(7,18,16,.2),0 0 0 1px rgba(209,250,229,.8);
   background:#fff;
+  box-sizing:border-box;
+  overflow:hidden;
+}
+.case-dialog[open]{
+  display:flex;
+  flex-direction:column;
 }
 .case-dialog::backdrop{background:rgba(7,18,16,.55);backdrop-filter:blur(4px)}
 .case-dialog-header{
+  flex-shrink:0;
   display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
   padding:22px 24px 16px;border-bottom:1px solid var(--rule);
   position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);z-index:1;
@@ -434,7 +446,8 @@ h1.hero-h1 em{font-style:italic;color:var(--blue)}
 }
 .case-dialog-x:hover{background:var(--bluefade)}
 .case-dialog-body{
-  padding:20px 24px 28px;overflow-y:auto;max-height:calc(92vh - 100px);
+  padding:20px 24px 28px;overflow-y:auto;flex:1;min-height:0;
+  max-height:calc(92vh - 120px);
   -webkit-overflow-scrolling:touch;
 }
 .case-dialog-kicker{
@@ -455,10 +468,36 @@ h1.hero-h1 em{font-style:italic;color:var(--blue)}
 .case-dialog-pill{
   font-size:.68rem;font-weight:600;padding:4px 10px;border-radius:100px;background:var(--bluefade2);color:var(--blue2);border:1px solid rgba(13,148,136,.2);
 }
+.case-dialog-photos{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 4px;
+}
+.case-dialog-ph{margin:0;min-width:0}
+.case-dialog-ph-inner{
+  aspect-ratio:4/3;border-radius:12px;border:2px dashed rgba(13,148,136,.4);
+  background:linear-gradient(160deg,rgba(240,253,250,.95),#fff 55%,rgba(204,251,241,.35));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.case-dialog-ph-inner::after{
+  content:'';width:48px;height:48px;opacity:.2;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230d9488'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.case-dialog-ph-inner--app::after{
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230d9488'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.case-dialog-ph figcaption{
+  font-size:.68rem;font-weight:600;color:var(--muted);margin-top:10px;text-align:center;line-height:1.35;
+}
+.case-dialog-ph-hint{font-weight:500;opacity:.85;font-family:'DM Mono',monospace;font-size:.62rem}
 @media(max-width:640px){
-  .case-dialog{border-radius:14px 14px 0 0;max-height:95vh;align-self:flex-end;margin-top:auto}
-  .case-dialog-body{max-height:calc(95vh - 88px);padding:18px 18px 24px}
+  .case-dialog{
+    left:50%;top:50%;transform:translate(-50%,-50%);
+    border-radius:14px;max-height:min(94vh,900px);width:calc(100vw - 24px);
+  }
+  .case-dialog-body{max-height:calc(94vh - 120px);padding:18px 18px 24px}
   .case-dialog-header{padding:18px 18px 14px}
+  .case-dialog-photos{grid-template-columns:1fr;gap:12px}
 }
 
 /* ─── EXPERIENCE / LEAD ─── */
@@ -1157,6 +1196,16 @@ body.nav-open{overflow:hidden;touch-action:none}
     <div class="case-dialog-meta">
       <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">MySQL</span><span class="case-dialog-pill">Live system</span>
     </div>
+    <div class="case-dialog-photos" aria-label="Project imagery placeholders">
+      <figure class="case-dialog-ph">
+        <div class="case-dialog-ph-inner" aria-hidden="true"></div>
+        <figcaption>With client <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
+      </figure>
+      <figure class="case-dialog-ph">
+        <div class="case-dialog-ph-inner case-dialog-ph-inner--app" aria-hidden="true"></div>
+        <figcaption>App / product <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
+      </figure>
+    </div>
     <div class="case-dialog-section">
       <h3>Context</h3>
       <p>A trucking operator running regional trips needed one place to see <strong>what moved</strong>, <strong>what it cost</strong>, and <strong>what drivers should be paid</strong> — without reconciling spreadsheets every week.</p>
@@ -1191,6 +1240,16 @@ body.nav-open{overflow:hidden;touch-action:none}
     <p class="case-dialog-kicker">National food distribution · 30+ branches · Production &amp; finance</p>
     <div class="case-dialog-meta">
       <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">Multi-branch</span><span class="case-dialog-pill">BOM / ERP</span>
+    </div>
+    <div class="case-dialog-photos" aria-label="Project imagery placeholders">
+      <figure class="case-dialog-ph">
+        <div class="case-dialog-ph-inner" aria-hidden="true"></div>
+        <figcaption>With client <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
+      </figure>
+      <figure class="case-dialog-ph">
+        <div class="case-dialog-ph-inner case-dialog-ph-inner--app" aria-hidden="true"></div>
+        <figcaption>App / product <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
+      </figure>
     </div>
     <div class="case-dialog-section">
       <h3>Context</h3>
@@ -1228,6 +1287,16 @@ body.nav-open{overflow:hidden;touch-action:none}
     <div class="case-dialog-meta">
       <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">Cashflow</span><span class="case-dialog-pill">Ledger</span>
     </div>
+    <div class="case-dialog-photos" aria-label="Project imagery placeholders">
+      <figure class="case-dialog-ph">
+        <div class="case-dialog-ph-inner" aria-hidden="true"></div>
+        <figcaption>With client <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
+      </figure>
+      <figure class="case-dialog-ph">
+        <div class="case-dialog-ph-inner case-dialog-ph-inner--app" aria-hidden="true"></div>
+        <figcaption>App / product <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
+      </figure>
+    </div>
     <div class="case-dialog-section">
       <h3>Context</h3>
       <p>A multi-branch food-style operation needed <strong>enterprise-grade discipline</strong> with a smaller footprint: two locations, but the same need for tight inventory, production alignment, and <strong>daily visibility into cash</strong>.</p>
@@ -1256,6 +1325,16 @@ body.nav-open{overflow:hidden;touch-action:none}
     <p class="case-dialog-kicker">Purchase orders · Inventory · Sales · Branch-ready</p>
     <div class="case-dialog-meta">
       <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">PO sync</span><span class="case-dialog-pill">Rules engine</span>
+    </div>
+    <div class="case-dialog-photos" aria-label="Project imagery placeholders">
+      <figure class="case-dialog-ph">
+        <div class="case-dialog-ph-inner" aria-hidden="true"></div>
+        <figcaption>With client <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
+      </figure>
+      <figure class="case-dialog-ph">
+        <div class="case-dialog-ph-inner case-dialog-ph-inner--app" aria-hidden="true"></div>
+        <figcaption>App / product <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
+      </figure>
     </div>
     <div class="case-dialog-section">
       <h3>Context</h3>
@@ -1286,6 +1365,16 @@ body.nav-open{overflow:hidden;touch-action:none}
     <div class="case-dialog-meta">
       <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">Service jobs</span><span class="case-dialog-pill">Collections</span>
     </div>
+    <div class="case-dialog-photos" aria-label="Project imagery placeholders">
+      <figure class="case-dialog-ph">
+        <div class="case-dialog-ph-inner" aria-hidden="true"></div>
+        <figcaption>With client <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
+      </figure>
+      <figure class="case-dialog-ph">
+        <div class="case-dialog-ph-inner case-dialog-ph-inner--app" aria-hidden="true"></div>
+        <figcaption>App / product <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
+      </figure>
+    </div>
     <div class="case-dialog-section">
       <h3>Context</h3>
       <p>HVAC businesses sell <strong>units and parts</strong> that must be tracked individually, and they earn repeatedly through <strong>install, repair, and maintenance</strong>. Many customers pay on <strong>installment plans</strong>, so collections must be as visible as inventory.</p>
@@ -1314,6 +1403,16 @@ body.nav-open{overflow:hidden;touch-action:none}
     <p class="case-dialog-kicker">Marketing site · Maritime · Lead generation</p>
     <div class="case-dialog-meta">
       <span class="case-dialog-pill">Web</span><span class="case-dialog-pill">SEO-ready</span><span class="case-dialog-pill">Lead forms</span>
+    </div>
+    <div class="case-dialog-photos" aria-label="Project imagery placeholders">
+      <figure class="case-dialog-ph">
+        <div class="case-dialog-ph-inner" aria-hidden="true"></div>
+        <figcaption>With client <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
+      </figure>
+      <figure class="case-dialog-ph">
+        <div class="case-dialog-ph-inner case-dialog-ph-inner--app" aria-hidden="true"></div>
+        <figcaption>App / product <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
+      </figure>
     </div>
     <div class="case-dialog-section">
       <h3>Context</h3>
@@ -1592,11 +1691,15 @@ body.nav-open{overflow:hidden;touch-action:none}
       e.stopPropagation();
       var id=btn.getAttribute('data-case-dialog');
       var d=id&&document.getElementById(id);
-      if(d&&typeof d.showModal==='function'){d.showModal();}
+      if(d&&typeof d.showModal==='function'){
+        d.showModal();
+        document.body.style.overflow='hidden';
+      }
     });
   });
   document.querySelectorAll('.case-dialog').forEach(function(d){
     d.addEventListener('click',function(e){if(e.target===d)d.close();});
+    d.addEventListener('close',function(){document.body.style.overflow='';});
     var x=d.querySelector('.case-dialog-x');
     if(x)x.addEventListener('click',function(){d.close();});
   });
