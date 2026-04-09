@@ -1088,16 +1088,16 @@ body.nav-open{overflow:hidden;touch-action:none}
 
       <div class="case-card reveal" style="transition-delay:.04s">
         <div class="case-img">
-          <img class="case-shot-img" src="images/cases/divinejm.png" alt="Divine JM Foods — illustrative ERP-style mockup with dummy products and figures" width="800" height="500" loading="lazy" decoding="async">
-          <span class="case-img-badge">30+ branches</span>
+          <img class="case-shot-img" src="images/cases/divinejm.png" alt="Divine JM Foods — Davao Region baked goods distribution (illustrative mockup)" width="800" height="500" loading="lazy" decoding="async">
+          <span class="case-img-badge">Davao Region</span>
         </div>
         <div class="case-body">
-          <span class="case-tag">Food · 30+ branches</span>
+          <span class="case-tag">Dice, hopia, cookies, piaya · Davao</span>
           <h3 class="case-title">DivineJM Foods</h3>
-          <p class="case-desc"><strong>Challenge:</strong> <strong>30+ branches</strong> needed one system for stock, production, consignment, and books.</p>
-          <p class="case-desc"><strong>Solution:</strong> Raw materials through finished goods, <strong>BOM / production mixes</strong>, branch inventory, <strong>consignment &amp; sales ledger</strong>, and finance-ready reporting.</p>
+          <p class="case-desc"><strong>Challenge:</strong> Distribution of <strong>Dice, hopia, cookies, piaya</strong>, and related items across <strong>30+ locations</strong> in the <strong>Davao Region</strong> needed one system for stock, production, consignment, and books.</p>
+          <p class="case-desc"><strong>Solution:</strong> Raw materials through finished goods, <strong>BOM / production mixes</strong>, branch inventory, <strong>consignment &amp; sales ledger</strong>, and finance-ready reporting — scoped for regional operations today, ready to grow.</p>
           <div class="case-metrics">
-            <div><div class="case-metric-val">30+</div><div class="case-metric-lbl">Branches</div></div>
+            <div><div class="case-metric-val">30+</div><div class="case-metric-lbl">Locations</div></div>
             <div><div class="case-metric-val">BOM</div><div class="case-metric-lbl">Production</div></div>
             <div><div class="case-metric-val">Full</div><div class="case-metric-lbl">Finance &amp; ledger</div></div>
           </div>
@@ -1237,9 +1237,9 @@ body.nav-open{overflow:hidden;touch-action:none}
     <button type="button" class="case-dialog-x" aria-label="Close dialog">&times;</button>
   </div>
   <div class="case-dialog-body">
-    <p class="case-dialog-kicker">National food distribution · 30+ branches · Production &amp; finance</p>
+    <p class="case-dialog-kicker">Davao Region · Dice, hopia, cookies, piaya &amp; related · Production &amp; finance</p>
     <div class="case-dialog-meta">
-      <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">Multi-branch</span><span class="case-dialog-pill">BOM / ERP</span>
+      <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">Davao-wide network</span><span class="case-dialog-pill">BOM / ERP</span>
     </div>
     <div class="case-dialog-photos" aria-label="Project imagery placeholders">
       <figure class="case-dialog-ph">
@@ -1253,25 +1253,25 @@ body.nav-open{overflow:hidden;touch-action:none}
     </div>
     <div class="case-dialog-section">
       <h3>Context</h3>
-      <p>A food business distributing nationwide with <strong>many branches</strong> must know, at any moment: what raw stock exists, what is being produced, what finished goods sit where, what is on consignment, and whether the books reflect reality.</p>
+      <p>DivineJM manufactures and distributes familiar product lines — <strong>Dice</strong> (including durian and related variants), <strong>hopia</strong>, <strong>cookies</strong>, <strong>piaya</strong>, and other <strong>related baked and snack items</strong>. Operations run across <strong>30+ locations</strong> in the <strong>Davao Region</strong> (not nationwide today). The business must always know what raw stock exists, what is in production, what finished goods sit at each outlet, what is on consignment, and whether finance matches operations.</p>
     </div>
     <div class="case-dialog-section">
       <h3>The problem</h3>
-      <p>Branch inventory, production, consignment, and finance were at risk of <strong>drifting apart</strong>: production might consume materials that weren’t decremented correctly; branch stock might not match what sales could promise; consignment and ledger entries could lag behind operations. That breaks trust in margin and availability.</p>
+      <p>With many SKUs and a regional branch network, inventory, production, consignment, and finance could <strong>drift apart</strong>: production might consume materials that weren’t decremented correctly; branch stock might not match what sales could promise; consignment and ledger entries could lag behind the floor. That erodes trust in margin and availability — especially across a dense Davao footprint.</p>
     </div>
     <div class="case-dialog-section">
       <h3>Business model</h3>
-      <p>The model combines <strong>manufacturing</strong> (raw → finished via recipes / BOM), <strong>multi-location inventory</strong> (what each branch can sell or transfer), and <strong>consignment &amp; sales</strong> with a full financial trail. Profitability depends on accurate <strong>COGS</strong>, waste visibility, and branch-level performance — all of which require one operational source of truth.</p>
+      <p>Revenue comes from <strong>manufacturing and distributing</strong> those product lines through a <strong>regional network</strong> (Davao). The economics depend on <strong>BOM-accurate production</strong>, <strong>multi-location stock</strong> (sell, transfer, consign), and <strong>clean books</strong> tied to real movement — not a national model yet, but the same discipline: one truth for COGS, waste, and branch performance inside the region.</p>
     </div>
     <div class="case-dialog-section">
       <h3>How we fixed it</h3>
-      <p>We built a <strong>Laravel + MySQL</strong> platform that connects the full chain:</p>
+      <p>We built a <strong>Laravel + MySQL</strong> platform sized for <strong>Davao-wide</strong> operations today, structured so it can extend later if the business grows beyond the region:</p>
       <ul>
-        <li><strong>Master data</strong> — raw materials, finished products, areas, and customers structured for scale.</li>
+        <li><strong>Master data</strong> — raw materials, finished products, areas, and customers tuned to their categories (Dice, hopia, cookies, piaya, and related SKUs).</li>
         <li><strong>Production</strong> — production mixes and <strong>BOM-style logic</strong> with <strong>automatic raw-material deductions</strong> when product is produced.</li>
-        <li><strong>Branch inventory</strong> — visibility per branch for what can ship or transfer.</li>
+        <li><strong>Branch inventory</strong> — visibility per location for what can ship, transfer, or sit on consignment within the network.</li>
         <li><strong>Consignment &amp; sales</strong> with <strong>ledger-grade</strong> treatment so finance and operations read the same story.</li>
-        <li><strong>Reporting</strong> for operational and financial leadership without exporting to fragile spreadsheets.</li>
+        <li><strong>Reporting</strong> for leadership without exporting everything to fragile spreadsheets.</li>
       </ul>
     </div>
   </div>
@@ -1311,7 +1311,7 @@ body.nav-open{overflow:hidden;touch-action:none}
     </div>
     <div class="case-dialog-section">
       <h3>How we fixed it</h3>
-      <p>We implemented the same structural strengths as a larger distribution build — <strong>inventory sync</strong>, production and material logic, consignment and <strong>sales ledger</strong> — and added <strong>daily cashflow</strong> dashboards so leadership sees <strong>cost, profit, and liquidity</strong> as the day unfolds, not only after books close.</p>
+      <p>We implemented the same structural strengths as a full <strong>distribution / production</strong> build — <strong>inventory sync</strong>, production and material logic, consignment and <strong>sales ledger</strong> — and added <strong>daily cashflow</strong> dashboards so leadership sees <strong>cost, profit, and liquidity</strong> as the day unfolds, not only after books close.</p>
     </div>
   </div>
 </dialog>
