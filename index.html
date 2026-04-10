@@ -454,7 +454,7 @@ h1.hero-h1 em{font-style:italic;color:var(--blue)}
   font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue2);margin-bottom:14px;
 }
 .case-dialog-section{margin-bottom:22px}
-.case-dialog-section:last-child{margin-bottom:0}
+.case-dialog-section:last-of-type{margin-bottom:0}
 .case-dialog-section h3{
   font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--heading);margin-bottom:10px;
 }
@@ -468,28 +468,21 @@ h1.hero-h1 em{font-style:italic;color:var(--blue)}
 .case-dialog-pill{
   font-size:.68rem;font-weight:600;padding:4px 10px;border-radius:100px;background:var(--bluefade2);color:var(--blue2);border:1px solid rgba(13,148,136,.2);
 }
-.case-dialog-photos{
-  display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 4px;
+.case-dialog-gallery{
+  margin-top:28px;padding-top:22px;border-top:1px solid var(--rule);
 }
-.case-dialog-ph{margin:0;min-width:0}
-.case-dialog-ph-inner{
-  aspect-ratio:4/3;border-radius:12px;border:2px dashed rgba(13,148,136,.4);
-  background:linear-gradient(160deg,rgba(240,253,250,.95),#fff 55%,rgba(204,251,241,.35));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
-  display:flex;align-items:center;justify-content:center;
-  position:relative;
+.case-dialog-gallery-title{
+  font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--heading);margin-bottom:14px;
 }
-.case-dialog-ph-inner::after{
-  content:'';width:48px;height:48px;opacity:.2;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230d9488'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'/%3E%3C/svg%3E") center/contain no-repeat;
+.case-dialog-shot{
+  margin:0;border-radius:12px;overflow:hidden;border:1px solid rgba(209,250,229,.9);
+  background:linear-gradient(145deg,#ecf5f3,#dfecea);
+  box-shadow:0 4px 20px rgba(7,18,16,.06);
 }
-.case-dialog-ph-inner--app::after{
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230d9488'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'/%3E%3C/svg%3E") center/contain no-repeat;
+.case-dialog-shot img{
+  width:100%;height:auto;display:block;
+  object-fit:cover;object-position:top center;
 }
-.case-dialog-ph figcaption{
-  font-size:.68rem;font-weight:600;color:var(--muted);margin-top:10px;text-align:center;line-height:1.35;
-}
-.case-dialog-ph-hint{font-weight:500;opacity:.85;font-family:'DM Mono',monospace;font-size:.62rem}
 @media(max-width:640px){
   .case-dialog{
     left:50%;top:50%;transform:translate(-50%,-50%);
@@ -497,7 +490,6 @@ h1.hero-h1 em{font-style:italic;color:var(--blue)}
   }
   .case-dialog-body{max-height:calc(94vh - 120px);padding:18px 18px 24px}
   .case-dialog-header{padding:18px 18px 14px}
-  .case-dialog-photos{grid-template-columns:1fr;gap:12px}
 }
 
 /* ─── EXPERIENCE / LEAD ─── */
@@ -1196,16 +1188,6 @@ body.nav-open{overflow:hidden;touch-action:none}
     <div class="case-dialog-meta">
       <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">MySQL</span><span class="case-dialog-pill">Live system</span>
     </div>
-    <div class="case-dialog-photos" aria-label="Project imagery placeholders">
-      <figure class="case-dialog-ph">
-        <div class="case-dialog-ph-inner" aria-hidden="true"></div>
-        <figcaption>With client <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
-      </figure>
-      <figure class="case-dialog-ph">
-        <div class="case-dialog-ph-inner case-dialog-ph-inner--app" aria-hidden="true"></div>
-        <figcaption>App / product <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
-      </figure>
-    </div>
     <div class="case-dialog-section">
       <h3>Context</h3>
       <p>A trucking operator running regional trips needed one place to see <strong>what moved</strong>, <strong>what it cost</strong>, and <strong>what drivers should be paid</strong> — without reconciling spreadsheets every week.</p>
@@ -1228,6 +1210,12 @@ body.nav-open{overflow:hidden;touch-action:none}
       </ul>
       <p>One database, one audit trail, role-based access — so leadership can trust the numbers and the team spends less time fixing them.</p>
     </div>
+    <div class="case-dialog-gallery">
+      <h3 class="case-dialog-gallery-title">Project screenshot</h3>
+      <figure class="case-dialog-shot">
+        <img src="images/cases/jm-rosel.png" alt="JMRosel Trucking Services — system interface" width="1400" height="617" loading="lazy" decoding="async">
+      </figure>
+    </div>
   </div>
 </dialog>
 
@@ -1240,16 +1228,6 @@ body.nav-open{overflow:hidden;touch-action:none}
     <p class="case-dialog-kicker">Davao Region · Dice, hopia, cookies, piaya &amp; related · Production &amp; finance</p>
     <div class="case-dialog-meta">
       <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">Davao-wide network</span><span class="case-dialog-pill">BOM / ERP</span>
-    </div>
-    <div class="case-dialog-photos" aria-label="Project imagery placeholders">
-      <figure class="case-dialog-ph">
-        <div class="case-dialog-ph-inner" aria-hidden="true"></div>
-        <figcaption>With client <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
-      </figure>
-      <figure class="case-dialog-ph">
-        <div class="case-dialog-ph-inner case-dialog-ph-inner--app" aria-hidden="true"></div>
-        <figcaption>App / product <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
-      </figure>
     </div>
     <div class="case-dialog-section">
       <h3>Context</h3>
@@ -1274,6 +1252,12 @@ body.nav-open{overflow:hidden;touch-action:none}
         <li><strong>Reporting</strong> for leadership without exporting everything to fragile spreadsheets.</li>
       </ul>
     </div>
+    <div class="case-dialog-gallery">
+      <h3 class="case-dialog-gallery-title">Project screenshot</h3>
+      <figure class="case-dialog-shot">
+        <img src="images/cases/divinejm.png" alt="DivineJM Foods — ERP / finished products UI" width="1024" height="520" loading="lazy" decoding="async">
+      </figure>
+    </div>
   </div>
 </dialog>
 
@@ -1286,16 +1270,6 @@ body.nav-open{overflow:hidden;touch-action:none}
     <p class="case-dialog-kicker">Supplier to Mers Delicacies · Digos City · Cassava &amp; daily cashflow</p>
     <div class="case-dialog-meta">
       <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">2 branches</span><span class="case-dialog-pill">Cashflow · ledger</span>
-    </div>
-    <div class="case-dialog-photos" aria-label="Project imagery placeholders">
-      <figure class="case-dialog-ph">
-        <div class="case-dialog-ph-inner" aria-hidden="true"></div>
-        <figcaption>With client <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
-      </figure>
-      <figure class="case-dialog-ph">
-        <div class="case-dialog-ph-inner case-dialog-ph-inner--app" aria-hidden="true"></div>
-        <figcaption>App / product <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
-      </figure>
     </div>
     <div class="case-dialog-section">
       <h3>Context</h3>
@@ -1313,6 +1287,12 @@ body.nav-open{overflow:hidden;touch-action:none}
       <h3>How we fixed it</h3>
       <p>We implemented a full <strong>distribution / production-style</strong> build — <strong>inventory sync</strong>, production and material logic, consignment and <strong>sales ledger</strong> — tailored to their categories, plus <strong>daily cashflow</strong> dashboards so leadership sees <strong>cost, profit, and liquidity</strong> as the day unfolds, not only after books close.</p>
     </div>
+    <div class="case-dialog-gallery">
+      <h3 class="case-dialog-gallery-title">Project screenshot</h3>
+      <figure class="case-dialog-shot">
+        <img src="images/cases/angie.png" alt="Angie — inventory, sales &amp; finance UI" width="1024" height="536" loading="lazy" decoding="async">
+      </figure>
+    </div>
   </div>
 </dialog>
 
@@ -1325,16 +1305,6 @@ body.nav-open{overflow:hidden;touch-action:none}
     <p class="case-dialog-kicker">Purchase orders · Inventory · Sales · Branch-ready</p>
     <div class="case-dialog-meta">
       <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">PO sync</span><span class="case-dialog-pill">Rules engine</span>
-    </div>
-    <div class="case-dialog-photos" aria-label="Project imagery placeholders">
-      <figure class="case-dialog-ph">
-        <div class="case-dialog-ph-inner" aria-hidden="true"></div>
-        <figcaption>With client <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
-      </figure>
-      <figure class="case-dialog-ph">
-        <div class="case-dialog-ph-inner case-dialog-ph-inner--app" aria-hidden="true"></div>
-        <figcaption>App / product <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
-      </figure>
     </div>
     <div class="case-dialog-section">
       <h3>Context</h3>
@@ -1352,6 +1322,12 @@ body.nav-open{overflow:hidden;touch-action:none}
       <h3>How we fixed it</h3>
       <p>We wired <strong>inventory, sales, and purchase orders</strong> in one Laravel system so a <strong>PO receipt updates stock</strong> and downstream behavior can follow <strong>rules by transaction type</strong>. The deployment runs <strong>one branch</strong> today; the <strong>data model and roles</strong> are structured to scale to additional branches without rebuilding core flows.</p>
     </div>
+    <div class="case-dialog-gallery">
+      <h3 class="case-dialog-gallery-title">Project screenshot</h3>
+      <figure class="case-dialog-shot">
+        <img src="images/cases/citipower.png" alt="Citipower — inventory &amp; products UI" width="1400" height="729" loading="lazy" decoding="async">
+      </figure>
+    </div>
   </div>
 </dialog>
 
@@ -1364,16 +1340,6 @@ body.nav-open{overflow:hidden;touch-action:none}
     <p class="case-dialog-kicker">Serialised equipment · Field service · Installments</p>
     <div class="case-dialog-meta">
       <span class="case-dialog-pill">Laravel</span><span class="case-dialog-pill">Service jobs</span><span class="case-dialog-pill">Collections</span>
-    </div>
-    <div class="case-dialog-photos" aria-label="Project imagery placeholders">
-      <figure class="case-dialog-ph">
-        <div class="case-dialog-ph-inner" aria-hidden="true"></div>
-        <figcaption>With client <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
-      </figure>
-      <figure class="case-dialog-ph">
-        <div class="case-dialog-ph-inner case-dialog-ph-inner--app" aria-hidden="true"></div>
-        <figcaption>App / product <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
-      </figure>
     </div>
     <div class="case-dialog-section">
       <h3>Context</h3>
@@ -1391,6 +1357,12 @@ body.nav-open{overflow:hidden;touch-action:none}
       <h3>How we fixed it</h3>
       <p>We implemented <strong>serial-level inventory</strong>, <strong>service job</strong> modules for core revenue activities, and an <strong>installment plan</strong> view so monthly collections are visible and missed payments surface early — reducing revenue leakage and disputes.</p>
     </div>
+    <div class="case-dialog-gallery">
+      <h3 class="case-dialog-gallery-title">Project screenshot</h3>
+      <figure class="case-dialog-shot">
+        <img src="images/cases/ronnie-aircon.png" alt="Ronnie Budiongan Aircon Services — system UI" width="1400" height="731" loading="lazy" decoding="async">
+      </figure>
+    </div>
   </div>
 </dialog>
 
@@ -1403,16 +1375,6 @@ body.nav-open{overflow:hidden;touch-action:none}
     <p class="case-dialog-kicker">Marketing site · Maritime · Lead generation</p>
     <div class="case-dialog-meta">
       <span class="case-dialog-pill">Web</span><span class="case-dialog-pill">SEO-ready</span><span class="case-dialog-pill">Lead forms</span>
-    </div>
-    <div class="case-dialog-photos" aria-label="Project imagery placeholders">
-      <figure class="case-dialog-ph">
-        <div class="case-dialog-ph-inner" aria-hidden="true"></div>
-        <figcaption>With client <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
-      </figure>
-      <figure class="case-dialog-ph">
-        <div class="case-dialog-ph-inner case-dialog-ph-inner--app" aria-hidden="true"></div>
-        <figcaption>App / product <span class="case-dialog-ph-hint">(placeholder)</span></figcaption>
-      </figure>
     </div>
     <div class="case-dialog-section">
       <h3>Context</h3>
@@ -1429,6 +1391,12 @@ body.nav-open{overflow:hidden;touch-action:none}
     <div class="case-dialog-section">
       <h3>How we fixed it</h3>
       <p>We built a focused <strong>marketing presence</strong> with clear service narratives, structured sections for maritime offerings, and <strong>inquiry paths</strong> that match how prospects evaluate vendors. The implementation leaves room to grow (case studies, partner logos, richer content) without restructuring the core site — so marketing can evolve without a rebuild.</p>
+    </div>
+    <div class="case-dialog-gallery">
+      <h3 class="case-dialog-gallery-title">Project screenshot</h3>
+      <figure class="case-dialog-shot">
+        <img src="images/cases/aag-maritime.png" alt="AAG Maritime — marketing site" width="1400" height="729" loading="lazy" decoding="async">
+      </figure>
     </div>
   </div>
 </dialog>
