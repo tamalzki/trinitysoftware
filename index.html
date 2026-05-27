@@ -448,6 +448,7 @@ h1.hero-h1 em{font-style:italic;color:var(--blue)}
 .case-dialog-body{
   padding:20px 24px 28px;overflow-y:auto;flex:1;min-height:0;
   max-height:calc(92vh - 120px);
+  overflow-x:hidden;
   -webkit-overflow-scrolling:touch;
 }
 .case-dialog-kicker{
@@ -488,11 +489,23 @@ h1.hero-h1 em{font-style:italic;color:var(--blue)}
 }
 @media(max-width:640px){
   .case-dialog{
-    left:50%;top:50%;transform:translate(-50%,-50%);
-    border-radius:14px;max-height:min(94vh,900px);width:calc(100vw - 24px);
+    left:0;right:0;top:0;bottom:0;
+    transform:none;
+    width:100vw;max-width:none;
+    height:100dvh;max-height:none;
+    border-radius:0;
   }
-  .case-dialog-body{max-height:calc(94vh - 120px);padding:18px 18px 24px}
-  .case-dialog-header{padding:18px 18px 14px}
+  .case-dialog-header{
+    padding:16px 16px 12px;
+    position:sticky;top:0;z-index:2;
+  }
+  .case-dialog-body{
+    padding:16px 16px calc(20px + env(safe-area-inset-bottom));
+    max-height:none;
+  }
+  .case-dialog-shot{
+    border-radius:10px;
+  }
 }
 
 /* ─── EXPERIENCE / LEAD ─── */
